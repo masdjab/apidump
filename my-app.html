@@ -1,0 +1,406 @@
+<html>
+<head>
+  <title>API Documentation for My Simple App</title>
+  
+  <style>
+    body, td {
+      font-family: Verdana;
+      font-size: 12px;
+    }
+    
+    h1 {
+      font-size: 14px;
+    }
+    
+    h2 {
+      font-size: 13px;
+    }
+    
+    h3 {
+      font-size: 12px;
+    }
+    
+    h4 {
+      font-size: 11px;
+    }
+    
+    h5 {
+      font-size: 10px;
+    }
+    
+    h6 {
+      font-size: 9px;
+    }
+    
+    pre {
+      font-family: Courier New;
+      font-size: 12px;
+      margin-top: 6px;
+      margin-bottom: 0px;
+    }
+    
+    .title {
+      width: 100%;
+      padding: 4 4 4 4;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: #000000;
+      color: #ffffff;
+    }
+    
+    table.api_info {
+      cell-spacing: 0;
+      cell-padding: 0;
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 8px;
+      table-layout: fixed;
+    }
+    
+    table.api_info td {
+      vertical-align: top;
+      word-wrap: break-word;
+    }
+    
+    .name {
+      font-family: Arial; Tahoma;
+      color: #c000c0
+    }
+    
+    .mandatory {
+      color: #c00000;
+    }
+    
+    .optional {
+      color: #00c000;
+    }
+  </style>
+</head>
+<body>
+  <a name='#top'>
+  <h1>API Documentation for My Simple App</h1>
+  Version <b>1.0.0.0</b> Build Date <b>190426</b><br/><br/>
+  
+  Generated on 2019-04-26 21:19:54 using API Dump v1.0.0.4 Build 190424a
+<br/><br/>Example of documentation header<br/><br/>  
+  
+  <div class='title'>Table of Contents</div>
+  <br/>
+  <a href='#41759268'>Users.Login</a><br/>
+  <ul>
+    <li><a href='#41757696'>Login using wrong user ID</a></li>
+    <li><a href='#41757336'>Login using wrong password</a></li>
+    <li><a href='#41756916'>Login as Admin</a></li>
+  </ul>
+  <a href='#41756724'>Users.List</a> - <a href='#41756472'>Get list of available users</a></a><br/>  
+  <br/><br/>
+  <a href='#top'>Back to top</a>  <br/><br/>
+  
+  
+  <a name = '41759268'>
+  <div class="title">
+    # Users.Login
+  </div>
+  <table class="api_info">
+    <tr>
+      <td width="80px">Description</td>
+      <td width="10px">:</td>
+      <td>
+        Log a user into the system. After successful login, system return a uniquely generated token to be used to access all API's functions.
+      </td>
+    </tr>
+    <tr>
+      <td>URL</td>
+      <td>:</td>
+      <td>
+        /users/login
+      </td>
+    </tr>
+    <tr>
+      <td>Method</td>
+      <td>:</td>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <td>Headers</td>
+      <td>:</td>
+      <td>
+        {"Content-Type"=>"application/json"}
+      </td>
+    </tr>
+    <tr>
+      <td>Parameters</td>
+      <td>:</td>
+      <td>
+        <span class='name mandatory'>login</span>: User ID, string, mandatory<br/>
+        <span class='name mandatory'>password</span>: Password, string, mandatory
+      </td>
+    </tr>
+    <tr>
+      <td>Examples</td>
+      <td>:</td>
+      <td>
+        <a name='41757696'>
+        <h2>Login using wrong user ID</h2>
+        
+        URL:<br/>http://localhost:4567/users/login<br/>
+        <br/>
+        
+        Parameters:<br/>
+        <pre>{"login":"invalid_user","password":"invalid_password"}</pre>
+        <br/>
+        
+        Output:<br/>
+        <pre>{
+  "code": -1,
+  "desc": "Invalid login and/or password.",
+  "data": null
+}</pre>
+        <br/>
+        
+        
+        <a name='41757336'>
+        <h2>Login using wrong password</h2>
+        
+        URL:<br/>http://localhost:4567/users/login<br/>
+        <br/>
+        
+        Parameters:<br/>
+        <pre>{"login":"superadmin","password":"superduper"}</pre>
+        <br/>
+        
+        Output:<br/>
+        <pre>{
+  "code": -1,
+  "desc": "Invalid login and/or password.",
+  "data": null
+}</pre>
+        <br/>
+        
+        
+        <a name='41756916'>
+        <h2>Login as Admin</h2>
+        
+        URL:<br/>http://localhost:4567/users/login<br/>
+        <br/>
+        
+        Parameters:<br/>
+        <pre>{"login":"admin","password":"admin"}</pre>
+        <br/>
+        
+        Output:<br/>
+        <pre>{
+  "code": 0,
+  "desc": "success",
+  "data": {
+    "token": "08e77ae7c7ea199c6ada25e690fa4490",
+  }
+}</pre>
+        <br/>
+        
+        
+      </td>
+    </tr>
+  </table>
+  <br/>
+  <a href='#top'>Back to top</a>
+  <br/><br/>
+  
+  <a name = '41756724'>
+  <div class="title">
+    # Users.List
+  </div>
+  <table class="api_info">
+    <tr>
+      <td width="80px">Description</td>
+      <td width="10px">:</td>
+      <td>
+        Get list of available users
+      </td>
+    </tr>
+    <tr>
+      <td>URL</td>
+      <td>:</td>
+      <td>
+        /users
+      </td>
+    </tr>
+    <tr>
+      <td>Method</td>
+      <td>:</td>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <td>Headers</td>
+      <td>:</td>
+      <td>
+        {"Content-Type"=>"application/json"}
+      </td>
+    </tr>
+    <tr>
+      <td>Parameters</td>
+      <td>:</td>
+      <td>
+        <span class='name mandatory'>token</span>: Login token, string, mandatory<br/>
+        <span class='name optional'>user_id</span>: User ID, integer, optional<br/>
+        <span class='name optional'>department_id</span>: Department ID, integer, optional<br/>
+        <span class='name optional'>division_id</span>: Division ID, integer, optional<br/>
+        <span class='name optional'>section_id</span>: Section ID, integer, optional<br/>
+        <span class='name optional'>occupation_id</span>: Occupation ID, integer, optional<br/>
+        <span class='name optional'>user_type_id</span>: User type ID, integer, optional
+      </td>
+    </tr>
+    <tr>
+      <td>Examples</td>
+      <td>:</td>
+      <td>
+        <a name='41756472'>
+        <h2>Get list of available users</h2>
+        
+        URL:<br/>http://localhost:4567/users<br/>
+        <br/>
+        
+        Parameters:<br/>
+        <pre>{"token":"08e77ae7c7ea199c6ada25e690fa4490","limit":10}</pre>
+        <br/>
+        
+        Output:<br/>
+        <pre>{
+  "code": 0,
+  "desc": "success",
+  "data": [
+    {
+      "user_id": 5,
+      "user_name": "Heryudi Praja",
+      "department_id": 0,
+      "department_name": null,
+      "division_id": 0,
+      "division_name": null,
+      "section_id": 0,
+      "section_name": null,
+      "occupation_id": 0,
+      "occupation_name": null,
+      "user_type_id": 1,
+      "user_type_name": "Superadmin",
+      "approval_level": -1,
+      "access_right_id": 1,
+      "access_right_name": "(Default)",
+      "profile_image_id": 0,
+      "f_data": 1
+    },
+    {
+      "user_id": 6,
+      "user_name": "Superadmin",
+      "department_id": 0,
+      "department_name": null,
+      "division_id": 0,
+      "division_name": null,
+      "section_id": 0,
+      "section_name": null,
+      "occupation_id": 0,
+      "occupation_name": null,
+      "user_type_id": 1,
+      "user_type_name": "Superadmin",
+      "approval_level": -1,
+      "access_right_id": 1,
+      "access_right_name": "(Default)",
+      "profile_image_id": 0,
+      "f_data": 1
+    },
+    {
+      "user_id": 7,
+      "user_name": "Admin",
+      "department_id": 0,
+      "department_name": null,
+      "division_id": 0,
+      "division_name": null,
+      "section_id": 0,
+      "section_name": null,
+      "occupation_id": 0,
+      "occupation_name": null,
+      "user_type_id": 2,
+      "user_type_name": "Admin",
+      "approval_level": -1,
+      "access_right_id": 1,
+      "access_right_name": "(Default)",
+      "profile_image_id": 0,
+      "f_data": 1
+    },
+    {
+      "user_id": 9,
+      "user_name": "Logistics Manager",
+      "department_id": 14,
+      "department_name": "Logistics",
+      "division_id": 6,
+      "division_name": null,
+      "section_id": 0,
+      "section_name": null,
+      "occupation_id": 2,
+      "occupation_name": "Manager",
+      "user_type_id": 4,
+      "user_type_name": "Manager",
+      "approval_level": 3,
+      "access_right_id": 1,
+      "access_right_name": "(Default)",
+      "profile_image_id": 0,
+      "f_data": 1
+    },
+    {
+      "user_id": 10,
+      "user_name": "Warehouse Supervisor",
+      "department_id": 14,
+      "department_name": "Logistics",
+      "division_id": 6,
+      "division_name": "Warehouse",
+      "section_id": 12,
+      "section_name": null,
+      "occupation_id": 3,
+      "occupation_name": "Supervisor",
+      "user_type_id": 5,
+      "user_type_name": "Supervisor",
+      "approval_level": 2,
+      "access_right_id": 1,
+      "access_right_name": "(Default)",
+      "profile_image_id": 0,
+      "f_data": 1
+    },
+    {
+      "user_id": 11,
+      "user_name": "Marketing Manager",
+      "department_id": 16,
+      "department_name": "Marketing",
+      "division_id": 6,
+      "division_name": null,
+      "section_id": 12,
+      "section_name": null,
+      "occupation_id": 4,
+      "occupation_name": "Manager",
+      "user_type_id": 6,
+      "user_type_name": "Manager",
+      "approval_level": 1,
+      "access_right_id": 1,
+      "access_right_name": "(Default)",
+      "profile_image_id": 0,
+      "f_data": 1
+    }
+  ]
+}
+</pre>
+        <br/>
+        
+        
+      </td>
+    </tr>
+  </table>
+  <br/>
+  <a href='#top'>Back to top</a>
+  <br/><br/>
+  
+  <hr/>
+  Total 2 features, 4 requests, 2 success, 2 errors.
+</body>
+</html>
