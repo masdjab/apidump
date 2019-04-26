@@ -1,7 +1,4 @@
 <html>
-<head>
-  <title>ApiDump v1.0.0.4</title>
-</head>
 <body>
   <h1>ApiDump</h1> v1.0.0.4
   Last updated on 2019-04-26<br/><br/>
