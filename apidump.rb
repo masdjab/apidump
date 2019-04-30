@@ -264,7 +264,7 @@ EOS
   
   class ApiExample
     attr_accessor :example_id, :title, :comment, :url, :params, :input, :output
-    attr_reader   :owner
+    attr_reader   :before, :after
     
     def initialize(owner = nil, options = {})
       @owner      = owner
@@ -275,6 +275,8 @@ EOS
       @params     = options.fetch(:params, {})
       @input      = options.fetch(:input, {})
       @output     = options.fetch(:output, {})
+      @before     = options.fetch(:before, nil)
+      @after      = options.fetch(:after, nil)
     end
   end
   
@@ -495,6 +497,10 @@ EOS
           ip = {}
           rs = nil
           
+          en = {results: @results, request: rq}
+          
+          rq.before.call(en) if rq.before
+          
           if rq.input.is_a?(Hash)
             rq.input.keys.each do |k|
               ip[k] = getterproc(rq.input[k]).call(@results)
@@ -512,6 +518,8 @@ EOS
                 req_headers
               )
             )
+          
+          rq.after.call(en) if rq.after
           
           if rq.output.is_a?(Hash)
             @results[rq.example_id] = 
