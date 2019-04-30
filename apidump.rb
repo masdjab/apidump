@@ -5,8 +5,8 @@ require 'net/http'
 require 'json'
 
 module ApiDump
-  Version   = "1.0.0.4"
-  BuildDate = "190424a"
+  Version   = "1.0.0.5"
+  BuildDate = "190430a"
   CrLf      = 13.chr + 10.chr
   
   class ApiRequest
@@ -29,7 +29,7 @@ module ApiDump
           req = Net::HTTP::Get.new(uri, @headers)
         end
         
-        req.body = @params if @params
+        req.body = @params.to_json if @params
         rsp = http.request req
       end
       
@@ -230,7 +230,9 @@ EOS
         <br/>
         
         Parameters:<br/>
-        <pre>#{params}</pre>
+        <pre>
+#{JSON.pretty_generate(params)}
+        </pre>
         <br/>
         
         Output:<br/>
@@ -506,7 +508,7 @@ EOS
               ApiRequest.new(
                 "#{@spec.base_url}#{rq.url}", 
                 feature.request_method, 
-                ip.merge(rq.params.is_a?(Hash) ? rq.params : {}).to_json, 
+                ip.merge(rq.params.is_a?(Hash) ? rq.params : {}), 
                 req_headers
               )
             )
